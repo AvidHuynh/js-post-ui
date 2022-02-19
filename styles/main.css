@@ -73,3 +73,7 @@ ul {
   height: 40px;
   width: auto;
 }
+
+.nav .nav__link {
+  text-decoration: none;
+}
