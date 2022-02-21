@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const axiosClient = axios.create({
     baseURL: 'https://js-post-api.herokuapp.com/api',
@@ -6,3 +6,5 @@ const axiosClient = axios.create({
         'Content-Type': 'application/json',
     }
 })
+
+export default axiosClient
