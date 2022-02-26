@@ -45,13 +45,47 @@ function renderPostList(postList) {
   })
 }
 
+function handlePrevPagination(e) {
+  e.preventDefault()
+  console.log('prev')
+}
+
+function handleNextPagination(e) {
+  e.preventDefault()
+  console.log('next')
+}
+
+function initPagination() {
+  const ulPagination = document.getElementById('postsPagination')
+  if (!ulPagination) return
+
+  const prevPagination = ulPagination.firstElementChild?.firstElementChild
+  if (prevPagination) {
+    prevPagination.addEventListener('click', handlePrevPagination)
+  }
+
+  const nextPagination = ulPagination.lastElementChild?.lastElementChild
+  if (nextPagination) {
+    nextPagination.addEventListener('click', handleNextPagination)
+  }
+}
+
+function initURL() {
+  // update query params on URL
+  const url = new URL(window.location)
+  // update search params if needed
+  if (!url.searchParams.get('_page')) url.searchParams.set('_page', 1)
+  if (!url.searchParams.get('_limit')) url.searchParams.set('_limit', 6)
+  history.pushState({}, '', url)
+}
+
 ;(async () => {
-  // Call API
+  // Call ANI
   try {
-    const queryParams = {
-      _page: 1,
-      _limit: 9,
-    }
+    initPagination()
+    initURL()
+    const queryParams = new URLSearchParams(window.location.search)
+    // set default query parmas if not existed
     const { data, pagination } = await postApi.getAll(queryParams)
     renderPostList(data)
   } catch (error) {
