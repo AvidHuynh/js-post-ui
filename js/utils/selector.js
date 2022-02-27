@@ -1,3 +1,3 @@
 export function getUlPagination() {
-    return document.getElementById('postsPagination')
+    return document.getElementById('Pagination')
 } 

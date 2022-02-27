@@ -162,9 +162,19 @@
       <section class="posts-section">
         <div class="container">
           <h1 class="with-underline text-center">Latest posts</h1>
+          <div class="input-group mb-4">
+            <input
+              type="text"
+              id="searchInput"
+              class="form-control"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
+            <span class="input-group-text" id="search">Search</span>
+          </div>
 
           <!-- Post list -->
-          <ul id="postList" class="row posts-list justify-content-center">
+          <ul id="postList" class="row posts-list justify-content-center" style="padding: 0">
             <!-- <li class="col-12 col-md-6 col-lg-4">
               <div class="post-item mb-4">
                 <div class="card">
@@ -205,7 +215,7 @@
 
           <!-- Posts pagination -->
           <nav class="posts-nav" aria-label="Posts navigation">
-            <ul id="postsPagination" class="pagination justify-content-center">
+            <ul id="Pagination" class="pagination justify-content-center">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
                   <span aria-hidden="true">&laquo; Prev</span>
