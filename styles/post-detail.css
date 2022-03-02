@@ -23,4 +23,10 @@ section.hero {
 .post-detail .post-image {
   width: 100%;
   margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.post-detail .post-image:hover {
+  cursor: pointer;
+  transform:scale3d(1,1,1,0.4)
 }

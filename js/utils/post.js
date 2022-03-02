@@ -26,6 +26,14 @@ export function createPostElement(post) {
     })
   }
 
+  const divElement = liElement.firstElementChild;
+  if (divElement) {
+    divElement.addEventListener('click', () => {
+      window.location.assign(`/post-detail.html?id=${post.id}`)
+    })
+  }
+  // go to detail-page when click post
+
   return liElement
 }
 

@@ -72,7 +72,7 @@
             </div>
 
             <div class="post-content-wrapper">
-              <p id="postDetailDescription"></p>
+              <p id="postDetailDescription" style="font-style: italic"></p>
 
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Non totam pariatur
@@ -86,7 +86,14 @@
                 quas ducimus aliquid. Praesentium ea aspernatur vero deserunt.
               </p>
 
-              <img class="post-image" src="https://picsum.photos/1368/800" alt="Picsum photos" />
+              <div class="ratio ratio-21x9 mb-3 bg-light">
+                <img
+                  data-album="avidhuynh"
+                  class="post-image"
+                  src="https://picsum.photos/1368/400"
+                  alt="Picsum photos"
+                />
+              </div>
 
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit
@@ -106,12 +113,22 @@
                 quas ducimus aliquid. Praesentium ea aspernatur vero deserunt.
               </p>
 
-              <img class="post-image" src="https://picsum.photos/1368/1000" alt="Picsum photos" />
+              <div class="ratio ratio-21x9 mb-3 bg-light">
+                <img
+                  data-album="avidhuynh"
+                  class="post-image"
+                  src="https://picsum.photos/1368/600"
+                  alt="Picsum photos"
+                />
+              </div>
 
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci suscipit
                 inventore hic tenetur, dolor iusto dolorum rem, non error, saepe quia dignissimos
-                quas ducimus aliquid. Praesentium ea aspernatur vero deserunt.
+                quas ducimus aliquid. Praesentium ea aspernatur vero deserunt. Lorem, ipsum dolor
+                sit amet consectetur adipisicing elit. Adipisci suscipit inventore hic tenetur,
+                dolor iusto dolorum rem, non error, saepe quia dignissimos quas ducimus aliquid.
+                Praesentium ea aspernatur vero deserunt.
               </p>
             </div>
           </div>
@@ -120,9 +137,35 @@
     </main>
 
     <footer class="text-center text-muted py-3">
-      <small>Created by Po with <i class="fas fa-heart"></i></small>
+      <small>Created by AvidDev with <i class="fas fa-heart"></i></small>
     </footer>
 
+    <div id="lightbox" class="modal fade" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <div class="modal-body">
+            <img data-id="lightBoxImg" src="" alt="lightbox" width="100%" />
+            <div class="text-center mt-3">
+              <button data-id="lightBoxPrev" type="button" class="btn btn-primary btn-sm">
+                Prev
+              </button>
+              <button data-id="lightBoxNext" type="button" class="btn btn-primary btn-sm">
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- script boostrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
     <!-- Scripts should be placed here to prevent blocking render UI -->
+    <script type="module" src="/js/post-detail.js"></script>
   </body>
 </html>

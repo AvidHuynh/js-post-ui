@@ -6,9 +6,10 @@ async function handleFilterChange(filterName, filterValue) {
     // update query params
     const url = new URL(window.location)
     url.searchParams.set(filterName, filterValue)
+    // history.pushState là để cập nhật lại query parmas lên url mới nhất và có thể bấm nút back trên trình duyệt
+    history.pushState({}, '', url)
     // reset page if needed
     if (filterName === 'title_like') url.searchParams.set('_page', 1)
-    history.pushState({}, '', url)
 
     const { data, pagination } = await postApi.getAll(url.searchParams)
     renderPostList('postList', data)
