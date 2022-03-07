@@ -1,4 +1,4 @@
-import { setFieldValues, setBackgroundImage, setTextContent } from './commons'
+import { setFieldValues, setBackgroundImage, setTextContent, randomNumber } from './commons'
 import * as yup from 'yup'
 import { toast } from './toast'
 
@@ -45,13 +45,17 @@ function getPostSchema() {
         (value) => value.split(' ').filter((x) => !!x && x.length >= 3).length >= 2
       ),
     description: yup.string(),
+    imageUrl: yup
+      .string()
+      .required('Please random a background image')
+      .url('Please enter a valid URL'),
   })
 }
 
 async function validatePostForm(form, formValues) {
   try {
     // reset previous errors
-    ;['title', 'author'].forEach((name) => setFieldError(form, name, ''))
+    ;['title', 'author','imageUrl'].forEach((name) => setFieldError(form, name, ''))
     // start validating
     const schema = getPostSchema()
     await schema.validate(formValues, { abortEarly: false })
@@ -92,13 +96,24 @@ function hideLoading(form) {
   }
 }
 
+function initRandomImage(form) {
+  const button = document.getElementById('postChangeImage')
+  if (!button) return
+  button.addEventListener('click', () => {
+    const urlImage = `https://picsum.photos/id/${randomNumber(1000)}/1368/400`
+    setFieldValues(form, '[name="imageUrl"]', urlImage) // hidden field
+    setBackgroundImage(document, '#postHeroImage', urlImage)
+  })
+}
+
 export function initPostForm({ formId, defaultValues, onSubmit }) {
   const form = document.getElementById(formId)
   if (!form) return
 
   let submitting = false
   setFormValues(form, defaultValues)
-
+  initRandomImage(form)
+  
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
     // prevent other submission
@@ -113,8 +128,8 @@ export function initPostForm({ formId, defaultValues, onSubmit }) {
     // if valid trigger submit callback
     // ptjerwise, show validation errors
     const isValid = await validatePostForm(form, formValues)
-    if (!isValid) return
-    await onSubmit?.(formValues)
+    if (isValid) await onSubmit?.(formValues)
+
     hideLoading(form)
     submitting = false
   })

@@ -110,18 +110,24 @@
               <div class="form-group footerForm mt-3">
                 <label for="postChangeImage">Image</label>
                 <small id="passwordHelpBlock" class="form-text text-muted">
-                  We&apos;re using
+                  We're using
                   <a href="https://picsum.photos">Picsum service</a> to get a random image.
                 </small>
-                <button type="button" id="postChangeImage" class="btn btn-dark">
-                  Change post image
-                </button>
+
+                <input type="text" name="imageUrl" class="d-none" />
+                <div>
+                  <button type="button" id="postChangeImage" class="btn btn-dark">
+                    Change post image
+                  </button>
+                </div>
+
+                <div class="invalid-feedback"></div>
               </div>
 
-              <input type="hidden" name="imageUrl" />
-
               <div class="text-center">
-                <button name="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Save</button>
+                <button name="submit" class="btn btn-primary">
+                  <i class="fas fa-save mr-1"></i> Save
+                </button>
               </div>
             </form>
           </div>
