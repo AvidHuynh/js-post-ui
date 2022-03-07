@@ -1,0 +1,13 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+label {
+  margin-bottom: 0.5rem;
+}
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+}
+#postChangeImage {
+  margin-top: 1rem;
+}

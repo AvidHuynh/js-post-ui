@@ -26,13 +26,26 @@ export function createPostElement(post) {
     })
   }
 
+  // go to detail-page when click post
   const divElement = liElement.firstElementChild;
   if (divElement) {
-    divElement.addEventListener('click', () => {
+    divElement.addEventListener('click', (event) => {
+      // Option 2: if event is triggered from menu -> ignore
+      const menuElement = liElement.querySelector('[data-id="menuEdit"]');
+      if (menuElement && menuElement.contains(event.target)) return
       window.location.assign(`/post-detail.html?id=${post.id}`)
     })
   }
-  // go to detail-page when click post
+
+  // go to edit-page when click post
+  const menuEditElement = liElement.querySelector('[data-id="edit"]');
+  if (menuEditElement) {
+    menuEditElement.addEventListener('click', (e) => {
+      // Option 1: prebent evern bubbing to parent
+      // e.stopPropagation()
+      window.location.assign(`/add-edit-post.html?id=${post.id}`)
+    })
+  }
 
   return liElement
 }
