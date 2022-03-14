@@ -10,7 +10,7 @@ export const toast = {
       gravity: 'top', // `top` or `bottom`
       position: 'right', // `left`, `center` or `right`
       style: {
-        background: '#4fc3f7',
+        background: '#0288d1',
       },
     }).showToast()
   },
@@ -22,7 +22,7 @@ export const toast = {
       gravity: 'top', // `top` or `bottom`
       position: 'right', // `left`, `center` or `right`
       style: {
-        background: '#e57373',
+        background: '#d32f2f',
       },
     }).showToast()
   },
@@ -34,7 +34,7 @@ export const toast = {
       gravity: 'top', // `top` or `bottom`
       position: 'right', // `left`, `center` or `right`
       style: {
-        background: '#81c784',
+        background: '#388e3c',
       },
     }).showToast()
   },

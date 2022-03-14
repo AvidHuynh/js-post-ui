@@ -27,18 +27,18 @@ export function createPostElement(post) {
   }
 
   // go to detail-page when click post
-  const divElement = liElement.firstElementChild;
+  const divElement = liElement.firstElementChild
   if (divElement) {
     divElement.addEventListener('click', (event) => {
       // Option 2: if event is triggered from menu -> ignore
-      const menuElement = liElement.querySelector('[data-id="menuEdit"]');
+      const menuElement = liElement.querySelector('[data-id="menuEdit"]')
       if (menuElement && menuElement.contains(event.target)) return
       window.location.assign(`/post-detail.html?id=${post.id}`)
     })
   }
 
-  // go to edit-page when click post
-  const menuEditElement = liElement.querySelector('[data-id="edit"]');
+  // add event when click edit button
+  const menuEditElement = liElement.querySelector('[data-id="edit"]')
   if (menuEditElement) {
     menuEditElement.addEventListener('click', (e) => {
       // Option 1: prebent evern bubbing to parent
@@ -47,6 +47,18 @@ export function createPostElement(post) {
     })
   }
 
+  // add event when click remove button
+  const removeButton = liElement.querySelector('[data-id="remove"]')
+  if (removeButton) {
+    removeButton.addEventListener('click', (e) => {
+      const customEvent = new CustomEvent('post-delete', {
+        bubbles: true,
+        detail: post,
+      })
+      removeButton.dispatchEvent(customEvent)
+    })
+  }
+  
   return liElement
 }
 

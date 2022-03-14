@@ -1,4 +1,4 @@
-import axiosClient from './axiosClient';
+import axiosClient from './axiosClient'
 
 const postApi = {
   getAll(params) {
@@ -11,14 +11,26 @@ const postApi = {
   },
   add(data) {
     const url = '/posts'
-    return axiosClient.post(url, data) 
+    return axiosClient.post(url, data)
+  },
+  addFormData(data) {
+    const url = '/with-thumbnail/posts'
+    return axiosClient.post(url, data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+  },
+  updateFormData(data) {
+    const url = `/with-thumbnail/posts/${data.get('id')}`
+    return axiosClient.patch(url, data, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
   },
   update(data) {
     const url = `/posts/${data.id}`
     return axiosClient.patch(url, data)
   },
   remove(id) {
-    const url = `/post/${data.id}`
+    const url = `/posts/${id}`
     return axiosClient.delete(url)
   },
 }

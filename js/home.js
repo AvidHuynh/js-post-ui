@@ -1,11 +1,12 @@
 import postApi from './api/postAPI'
 import { renderPostList, renderPagination, initPagination, initSearch } from './utils'
+import { toast } from './utils/toast'
 
 async function handleFilterChange(filterName, filterValue) {
   try {
     // update query params
     const url = new URL(window.location)
-    url.searchParams.set(filterName, filterValue)
+    if (filterName) url.searchParams.set(filterName, filterValue)
     // history.pushState là để cập nhật lại query parmas lên url mới nhất và có thể bấm nút back trên trình duyệt
     history.pushState({}, '', url)
     // reset page if needed
@@ -17,6 +18,24 @@ async function handleFilterChange(filterName, filterValue) {
   } catch (error) {
     console.log('error filter change', error)
   }
+}
+
+function registerPostDeleteEvent() {
+  document.addEventListener('post-delete', async (event) => {
+    try {
+      const post = event.detail
+      const message = `Are you remove post ${post.title}`
+      if (window.confirm(message)) {
+        await postApi.remove(post.id)
+        await handleFilterChange()
+
+        toast.success('Remove post success!')
+      }
+    } catch (error) {
+      console.log('Fail to remove post', error)
+      toast.error(error.message)
+    }
+  })
 }
 
 ;(async () => {
@@ -41,9 +60,8 @@ async function handleFilterChange(filterName, filterValue) {
       onChange: (value) => handleFilterChange('title_like', value),
     })
 
-    const { data, pagination } = await postApi.getAll(queryParams)
-    renderPostList('postList', data)
-    renderPagination('Pagination', pagination)
+    registerPostDeleteEvent()
+    handleFilterChange()
   } catch (error) {
     console.log('get all failed', error)
   }
