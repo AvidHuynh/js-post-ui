@@ -54,6 +54,7 @@ function registerPostDeleteEvent() {
       defaultParams: queryParams,
       onChange: (page) => handleFilterChange('_page', page),
     })
+    
     initSearch({
       elementId: 'searchInput',
       defaultParams: queryParams,
